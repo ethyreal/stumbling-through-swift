@@ -17,6 +17,8 @@ class SimpleCoreTextViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = "Simple CoreText Example"
+
         setupTextView()
     }
     

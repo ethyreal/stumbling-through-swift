@@ -18,7 +18,7 @@ import CoreText
 class SimpleCoreTextView: UIView {
 
     var attrString : NSMutableAttributedString? = nil
-
+    var ctFrame: CTFrameRef? = nil
     
     init(frame: CGRect, text:NSString) {
         
@@ -46,7 +46,6 @@ class SimpleCoreTextView: UIView {
         CGAffineTransformTranslate(transform, 0, -CGRectGetHeight(self.bounds))
         
         self.transform = transform
-        
     }
     
 
@@ -67,9 +66,11 @@ class SimpleCoreTextView: UIView {
             
             let textLength = self.attrString!.length
             
-            let ctFrame : CTFrameRef = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, self.attrString!.length), path, nil)
+            self.ctFrame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, self.attrString!.length), path, nil)
             
-            CTFrameDraw(ctFrame, context)
+            if self.ctFrame {
+                CTFrameDraw(self.ctFrame!, context)
+            }
             
             CGContextRestoreGState(context);
 
