@@ -1,0 +1,546 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		37052968196B48540020F373 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37052967196B48540020F373 /* AppDelegate.swift */; };
+		3705296D196B48540020F373 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3705296B196B48540020F373 /* Main.storyboard */; };
+		3705296F196B48540020F373 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3705296E196B48540020F373 /* Images.xcassets */; };
+		3705297B196B48550020F373 /* DynamicLetterTilesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3705297A196B48550020F373 /* DynamicLetterTilesTests.swift */; };
+		37052986196B48FC0020F373 /* LetterInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37052984196B48FC0020F373 /* LetterInputViewController.swift */; };
+		37052987196B48FC0020F373 /* LetterInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37052984196B48FC0020F373 /* LetterInputViewController.swift */; };
+		37052988196B48FC0020F373 /* LetterTilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37052985196B48FC0020F373 /* LetterTilesViewController.swift */; };
+		37052989196B48FC0020F373 /* LetterTilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37052985196B48FC0020F373 /* LetterTilesViewController.swift */; };
+		370529A6196B49520020F373 /* O@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3705298C196B49520020F373 /* O@2x.png */; };
+		370529A7196B49520020F373 /* P@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3705298D196B49520020F373 /* P@2x.png */; };
+		370529A8196B49520020F373 /* Q@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3705298E196B49520020F373 /* Q@2x.png */; };
+		370529A9196B49520020F373 /* R@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3705298F196B49520020F373 /* R@2x.png */; };
+		370529AA196B49520020F373 /* S@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37052990196B49520020F373 /* S@2x.png */; };
+		370529AB196B49520020F373 /* T@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37052991196B49520020F373 /* T@2x.png */; };
+		370529AC196B49520020F373 /* U@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37052992196B49520020F373 /* U@2x.png */; };
+		370529AD196B49520020F373 /* V@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37052993196B49520020F373 /* V@2x.png */; };
+		370529AE196B49520020F373 /* W@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37052994196B49520020F373 /* W@2x.png */; };
+		370529AF196B49520020F373 /* X@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37052995196B49520020F373 /* X@2x.png */; };
+		370529B0196B49520020F373 /* Y@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37052996196B49520020F373 /* Y@2x.png */; };
+		370529B1196B49520020F373 /* Z@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37052997196B49520020F373 /* Z@2x.png */; };
+		370529B2196B49520020F373 /* A@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37052998196B49520020F373 /* A@2x.png */; };
+		370529B3196B49520020F373 /* B@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37052999196B49520020F373 /* B@2x.png */; };
+		370529B4196B49520020F373 /* C@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3705299A196B49520020F373 /* C@2x.png */; };
+		370529B5196B49520020F373 /* D@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3705299B196B49520020F373 /* D@2x.png */; };
+		370529B6196B49520020F373 /* E@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3705299C196B49520020F373 /* E@2x.png */; };
+		370529B7196B49520020F373 /* F@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3705299D196B49520020F373 /* F@2x.png */; };
+		370529B8196B49520020F373 /* G@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3705299E196B49520020F373 /* G@2x.png */; };
+		370529B9196B49520020F373 /* H@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3705299F196B49520020F373 /* H@2x.png */; };
+		370529BA196B49520020F373 /* I@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370529A0196B49520020F373 /* I@2x.png */; };
+		370529BB196B49520020F373 /* J@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370529A1196B49520020F373 /* J@2x.png */; };
+		370529BC196B49520020F373 /* K@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370529A2196B49520020F373 /* K@2x.png */; };
+		370529BD196B49520020F373 /* L@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370529A3196B49520020F373 /* L@2x.png */; };
+		370529BE196B49520020F373 /* M@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370529A4196B49520020F373 /* M@2x.png */; };
+		370529BF196B49520020F373 /* N@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370529A5196B49520020F373 /* N@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		37052975196B48550020F373 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3705295A196B48540020F373 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 37052961196B48540020F373;
+			remoteInfo = DynamicLetterTiles;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		37052962196B48540020F373 /* DynamicLetterTiles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DynamicLetterTiles.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		37052966196B48540020F373 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		37052967196B48540020F373 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3705296C196B48540020F373 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3705296E196B48540020F373 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		37052974196B48550020F373 /* DynamicLetterTilesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DynamicLetterTilesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		37052979196B48550020F373 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3705297A196B48550020F373 /* DynamicLetterTilesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLetterTilesTests.swift; sourceTree = "<group>"; };
+		37052984196B48FC0020F373 /* LetterInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterInputViewController.swift; sourceTree = "<group>"; };
+		37052985196B48FC0020F373 /* LetterTilesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterTilesViewController.swift; sourceTree = "<group>"; };
+		3705298C196B49520020F373 /* O@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "O@2x.png"; sourceTree = "<group>"; };
+		3705298D196B49520020F373 /* P@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "P@2x.png"; sourceTree = "<group>"; };
+		3705298E196B49520020F373 /* Q@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Q@2x.png"; sourceTree = "<group>"; };
+		3705298F196B49520020F373 /* R@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "R@2x.png"; sourceTree = "<group>"; };
+		37052990196B49520020F373 /* S@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S@2x.png"; sourceTree = "<group>"; };
+		37052991196B49520020F373 /* T@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "T@2x.png"; sourceTree = "<group>"; };
+		37052992196B49520020F373 /* U@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "U@2x.png"; sourceTree = "<group>"; };
+		37052993196B49520020F373 /* V@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "V@2x.png"; sourceTree = "<group>"; };
+		37052994196B49520020F373 /* W@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "W@2x.png"; sourceTree = "<group>"; };
+		37052995196B49520020F373 /* X@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "X@2x.png"; sourceTree = "<group>"; };
+		37052996196B49520020F373 /* Y@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Y@2x.png"; sourceTree = "<group>"; };
+		37052997196B49520020F373 /* Z@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Z@2x.png"; sourceTree = "<group>"; };
+		37052998196B49520020F373 /* A@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "A@2x.png"; sourceTree = "<group>"; };
+		37052999196B49520020F373 /* B@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "B@2x.png"; sourceTree = "<group>"; };
+		3705299A196B49520020F373 /* C@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "C@2x.png"; sourceTree = "<group>"; };
+		3705299B196B49520020F373 /* D@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "D@2x.png"; sourceTree = "<group>"; };
+		3705299C196B49520020F373 /* E@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "E@2x.png"; sourceTree = "<group>"; };
+		3705299D196B49520020F373 /* F@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "F@2x.png"; sourceTree = "<group>"; };
+		3705299E196B49520020F373 /* G@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "G@2x.png"; sourceTree = "<group>"; };
+		3705299F196B49520020F373 /* H@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "H@2x.png"; sourceTree = "<group>"; };
+		370529A0196B49520020F373 /* I@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "I@2x.png"; sourceTree = "<group>"; };
+		370529A1196B49520020F373 /* J@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "J@2x.png"; sourceTree = "<group>"; };
+		370529A2196B49520020F373 /* K@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "K@2x.png"; sourceTree = "<group>"; };
+		370529A3196B49520020F373 /* L@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "L@2x.png"; sourceTree = "<group>"; };
+		370529A4196B49520020F373 /* M@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "M@2x.png"; sourceTree = "<group>"; };
+		370529A5196B49520020F373 /* N@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "N@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3705295F196B48540020F373 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37052971196B48550020F373 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		37052959196B48540020F373 = {
+			isa = PBXGroup;
+			children = (
+				37052964196B48540020F373 /* DynamicLetterTiles */,
+				37052977196B48550020F373 /* DynamicLetterTilesTests */,
+				37052963196B48540020F373 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		37052963196B48540020F373 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				37052962196B48540020F373 /* DynamicLetterTiles.app */,
+				37052974196B48550020F373 /* DynamicLetterTilesTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		37052964196B48540020F373 /* DynamicLetterTiles */ = {
+			isa = PBXGroup;
+			children = (
+				3705298B196B49420020F373 /* Resources */,
+				3705298A196B49020020F373 /* Controller */,
+				37052967196B48540020F373 /* AppDelegate.swift */,
+				37052965196B48540020F373 /* Supporting Files */,
+			);
+			path = DynamicLetterTiles;
+			sourceTree = "<group>";
+		};
+		37052965196B48540020F373 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				37052966196B48540020F373 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		37052977196B48550020F373 /* DynamicLetterTilesTests */ = {
+			isa = PBXGroup;
+			children = (
+				3705297A196B48550020F373 /* DynamicLetterTilesTests.swift */,
+				37052978196B48550020F373 /* Supporting Files */,
+			);
+			path = DynamicLetterTilesTests;
+			sourceTree = "<group>";
+		};
+		37052978196B48550020F373 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				37052979196B48550020F373 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3705298A196B49020020F373 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				37052984196B48FC0020F373 /* LetterInputViewController.swift */,
+				37052985196B48FC0020F373 /* LetterTilesViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		3705298B196B49420020F373 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3705296B196B48540020F373 /* Main.storyboard */,
+				3705296E196B48540020F373 /* Images.xcassets */,
+				3705298C196B49520020F373 /* O@2x.png */,
+				3705298D196B49520020F373 /* P@2x.png */,
+				3705298E196B49520020F373 /* Q@2x.png */,
+				3705298F196B49520020F373 /* R@2x.png */,
+				37052990196B49520020F373 /* S@2x.png */,
+				37052991196B49520020F373 /* T@2x.png */,
+				37052992196B49520020F373 /* U@2x.png */,
+				37052993196B49520020F373 /* V@2x.png */,
+				37052994196B49520020F373 /* W@2x.png */,
+				37052995196B49520020F373 /* X@2x.png */,
+				37052996196B49520020F373 /* Y@2x.png */,
+				37052997196B49520020F373 /* Z@2x.png */,
+				37052998196B49520020F373 /* A@2x.png */,
+				37052999196B49520020F373 /* B@2x.png */,
+				3705299A196B49520020F373 /* C@2x.png */,
+				3705299B196B49520020F373 /* D@2x.png */,
+				3705299C196B49520020F373 /* E@2x.png */,
+				3705299D196B49520020F373 /* F@2x.png */,
+				3705299E196B49520020F373 /* G@2x.png */,
+				3705299F196B49520020F373 /* H@2x.png */,
+				370529A0196B49520020F373 /* I@2x.png */,
+				370529A1196B49520020F373 /* J@2x.png */,
+				370529A2196B49520020F373 /* K@2x.png */,
+				370529A3196B49520020F373 /* L@2x.png */,
+				370529A4196B49520020F373 /* M@2x.png */,
+				370529A5196B49520020F373 /* N@2x.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		37052961196B48540020F373 /* DynamicLetterTiles */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3705297E196B48550020F373 /* Build configuration list for PBXNativeTarget "DynamicLetterTiles" */;
+			buildPhases = (
+				3705295E196B48540020F373 /* Sources */,
+				3705295F196B48540020F373 /* Frameworks */,
+				37052960196B48540020F373 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DynamicLetterTiles;
+			productName = DynamicLetterTiles;
+			productReference = 37052962196B48540020F373 /* DynamicLetterTiles.app */;
+			productType = "com.apple.product-type.application";
+		};
+		37052973196B48550020F373 /* DynamicLetterTilesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 37052981196B48550020F373 /* Build configuration list for PBXNativeTarget "DynamicLetterTilesTests" */;
+			buildPhases = (
+				37052970196B48550020F373 /* Sources */,
+				37052971196B48550020F373 /* Frameworks */,
+				37052972196B48550020F373 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				37052976196B48550020F373 /* PBXTargetDependency */,
+			);
+			name = DynamicLetterTilesTests;
+			productName = DynamicLetterTilesTests;
+			productReference = 37052974196B48550020F373 /* DynamicLetterTilesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3705295A196B48540020F373 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "George Webster";
+				TargetAttributes = {
+					37052961196B48540020F373 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					37052973196B48550020F373 = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = 37052961196B48540020F373;
+					};
+				};
+			};
+			buildConfigurationList = 3705295D196B48540020F373 /* Build configuration list for PBXProject "DynamicLetterTiles" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 37052959196B48540020F373;
+			productRefGroup = 37052963196B48540020F373 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				37052961196B48540020F373 /* DynamicLetterTiles */,
+				37052973196B48550020F373 /* DynamicLetterTilesTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		37052960196B48540020F373 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				370529BE196B49520020F373 /* M@2x.png in Resources */,
+				370529AC196B49520020F373 /* U@2x.png in Resources */,
+				370529A6196B49520020F373 /* O@2x.png in Resources */,
+				370529AB196B49520020F373 /* T@2x.png in Resources */,
+				370529B1196B49520020F373 /* Z@2x.png in Resources */,
+				370529BA196B49520020F373 /* I@2x.png in Resources */,
+				370529A7196B49520020F373 /* P@2x.png in Resources */,
+				370529A8196B49520020F373 /* Q@2x.png in Resources */,
+				370529AA196B49520020F373 /* S@2x.png in Resources */,
+				370529B7196B49520020F373 /* F@2x.png in Resources */,
+				370529B3196B49520020F373 /* B@2x.png in Resources */,
+				370529B8196B49520020F373 /* G@2x.png in Resources */,
+				370529B0196B49520020F373 /* Y@2x.png in Resources */,
+				370529B5196B49520020F373 /* D@2x.png in Resources */,
+				370529B6196B49520020F373 /* E@2x.png in Resources */,
+				370529A9196B49520020F373 /* R@2x.png in Resources */,
+				370529BB196B49520020F373 /* J@2x.png in Resources */,
+				370529B4196B49520020F373 /* C@2x.png in Resources */,
+				370529BC196B49520020F373 /* K@2x.png in Resources */,
+				370529AE196B49520020F373 /* W@2x.png in Resources */,
+				370529BD196B49520020F373 /* L@2x.png in Resources */,
+				370529AD196B49520020F373 /* V@2x.png in Resources */,
+				370529AF196B49520020F373 /* X@2x.png in Resources */,
+				370529BF196B49520020F373 /* N@2x.png in Resources */,
+				370529B2196B49520020F373 /* A@2x.png in Resources */,
+				370529B9196B49520020F373 /* H@2x.png in Resources */,
+				3705296D196B48540020F373 /* Main.storyboard in Resources */,
+				3705296F196B48540020F373 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37052972196B48550020F373 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3705295E196B48540020F373 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37052986196B48FC0020F373 /* LetterInputViewController.swift in Sources */,
+				37052988196B48FC0020F373 /* LetterTilesViewController.swift in Sources */,
+				37052968196B48540020F373 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37052970196B48550020F373 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3705297B196B48550020F373 /* DynamicLetterTilesTests.swift in Sources */,
+				37052989196B48FC0020F373 /* LetterTilesViewController.swift in Sources */,
+				37052987196B48FC0020F373 /* LetterInputViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		37052976196B48550020F373 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 37052961196B48540020F373 /* DynamicLetterTiles */;
+			targetProxy = 37052975196B48550020F373 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3705296B196B48540020F373 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3705296C196B48540020F373 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3705297C196B48550020F373 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				METAL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3705297D196B48550020F373 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				METAL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3705297F196B48550020F373 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = DynamicLetterTiles/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		37052980196B48550020F373 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = DynamicLetterTiles/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+		37052982196B48550020F373 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DynamicLetterTiles.app/DynamicLetterTiles";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = DynamicLetterTilesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				METAL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Debug;
+		};
+		37052983196B48550020F373 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DynamicLetterTiles.app/DynamicLetterTiles";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = DynamicLetterTilesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				METAL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3705295D196B48540020F373 /* Build configuration list for PBXProject "DynamicLetterTiles" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3705297C196B48550020F373 /* Debug */,
+				3705297D196B48550020F373 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3705297E196B48550020F373 /* Build configuration list for PBXNativeTarget "DynamicLetterTiles" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3705297F196B48550020F373 /* Debug */,
+				37052980196B48550020F373 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		37052981196B48550020F373 /* Build configuration list for PBXNativeTarget "DynamicLetterTilesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37052982196B48550020F373 /* Debug */,
+				37052983196B48550020F373 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3705295A196B48540020F373 /* Project object */;
+}

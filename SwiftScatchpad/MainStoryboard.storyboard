@@ -32,29 +32,6 @@
                                             <segue destination="2kG-kZ-rR9" kind="push" identifier="simpleCoreTextExampleSegue" id="2rs-1Z-IxA"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="cOw-q9-gkN" style="IBUITableViewCellStyleDefault" id="38P-ou-A4H">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="38P-ou-A4H" id="LJd-7z-OTf">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Letter Tiles Dynamics" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cOw-q9-gkN">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="jSs-WI-sBM" kind="push" id="KuK-2O-pFE"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="9Gy-12-fPW">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Gy-12-fPW" id="1fD-hl-0zQ">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -95,73 +72,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sMq-d7-jou" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="733" y="-53"/>
-        </scene>
-        <!--Letter Tiles View Controller-->
-        <scene sceneID="24c-na-FT0">
-            <objects>
-                <viewController id="aMf-X5-YYP" customClass="LetterTilesViewController" customModule="SwiftScatchpad" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="BM3-o3-h4o"/>
-                        <viewControllerLayoutGuide type="bottom" id="MeK-2z-wHA"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="s00-hf-KwM">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="UCc-nU-uHx"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Cef-3r-iaM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1166" y="612"/>
-        </scene>
-        <!--Letter Input View Controller-->
-        <scene sceneID="CpZ-ip-XcW">
-            <objects>
-                <viewController id="jSs-WI-sBM" customClass="LetterInputViewController" customModule="SwiftScatchpad" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="XOj-rS-FWc"/>
-                        <viewControllerLayoutGuide type="bottom" id="Ydn-lT-2An"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tgv-fX-u2e">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter a small word, like you name." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPv-Hz-isb">
-                                <rect key="frame" x="20" y="93" width="280" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jrK-jb-pI8">
-                                <rect key="frame" x="242" y="122" width="58" height="30"/>
-                                <state key="normal" title="Enter">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="aMf-X5-YYP" kind="push" identifier="letterTilesSegue" id="vmN-rg-OCW"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hr4-Ie-No2">
-                                <rect key="frame" x="20" y="122" width="214" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
-                                <connections>
-                                    <outlet property="delegate" destination="jSs-WI-sBM" id="2C3-Qc-HdM"/>
-                                </connections>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="sVg-KR-LrH"/>
-                    <connections>
-                        <outlet property="enterButton" destination="jrK-jb-pI8" id="1Dw-mD-EAH"/>
-                        <outlet property="textField" destination="hr4-Ie-No2" id="Jnm-Zt-WKi"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8CV-Y8-OgM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="733" y="607"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yDb-y6-x0r">
