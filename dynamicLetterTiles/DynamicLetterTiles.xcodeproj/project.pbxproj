@@ -41,6 +41,8 @@
 		370529BD196B49520020F373 /* L@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370529A3196B49520020F373 /* L@2x.png */; };
 		370529BE196B49520020F373 /* M@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370529A4196B49520020F373 /* M@2x.png */; };
 		370529BF196B49520020F373 /* N@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370529A5196B49520020F373 /* N@2x.png */; };
+		37E0CE21196B7C9E00A36AE4 /* OutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E0CE20196B7C9E00A36AE4 /* OutlineView.swift */; };
+		37E0CE22196B7C9E00A36AE4 /* OutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E0CE20196B7C9E00A36AE4 /* OutlineView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +92,7 @@
 		370529A3196B49520020F373 /* L@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "L@2x.png"; sourceTree = "<group>"; };
 		370529A4196B49520020F373 /* M@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "M@2x.png"; sourceTree = "<group>"; };
 		370529A5196B49520020F373 /* N@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "N@2x.png"; sourceTree = "<group>"; };
+		37E0CE20196B7C9E00A36AE4 /* OutlineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutlineView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +134,7 @@
 		37052964196B48540020F373 /* DynamicLetterTiles */ = {
 			isa = PBXGroup;
 			children = (
+				37E0CE1F196B7C5900A36AE4 /* View */,
 				3705298B196B49420020F373 /* Resources */,
 				3705298A196B49020020F373 /* Controller */,
 				37052967196B48540020F373 /* AppDelegate.swift */,
@@ -178,6 +182,22 @@
 			children = (
 				3705296B196B48540020F373 /* Main.storyboard */,
 				3705296E196B48540020F373 /* Images.xcassets */,
+				37E0CE23196B89E700A36AE4 /* Images */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		37E0CE1F196B7C5900A36AE4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				37E0CE20196B7C9E00A36AE4 /* OutlineView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		37E0CE23196B89E700A36AE4 /* Images */ = {
+			isa = PBXGroup;
+			children = (
 				3705298C196B49520020F373 /* O@2x.png */,
 				3705298D196B49520020F373 /* P@2x.png */,
 				3705298E196B49520020F373 /* Q@2x.png */,
@@ -205,7 +225,7 @@
 				370529A4196B49520020F373 /* M@2x.png */,
 				370529A5196B49520020F373 /* N@2x.png */,
 			);
-			name = Resources;
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -336,6 +356,7 @@
 				37052986196B48FC0020F373 /* LetterInputViewController.swift in Sources */,
 				37052988196B48FC0020F373 /* LetterTilesViewController.swift in Sources */,
 				37052968196B48540020F373 /* AppDelegate.swift in Sources */,
+				37E0CE21196B7C9E00A36AE4 /* OutlineView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +367,7 @@
 				3705297B196B48550020F373 /* DynamicLetterTilesTests.swift in Sources */,
 				37052989196B48FC0020F373 /* LetterTilesViewController.swift in Sources */,
 				37052987196B48FC0020F373 /* LetterInputViewController.swift in Sources */,
+				37E0CE22196B7C9E00A36AE4 /* OutlineView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,19 +17,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter a small word, like you name." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mnh-vK-yYf">
-                                <rect key="frame" x="20" y="93" width="280" height="21"/>
+                                <rect key="frame" x="100" y="92" width="280" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MHI-9M-LFo">
-                                <rect key="frame" x="242" y="122" width="58" height="30"/>
-                                <state key="normal" title="Enter">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="50a-J8-5OX">
-                                <rect key="frame" x="20" y="122" width="214" height="30"/>
+                                <rect key="frame" x="100" y="122" width="214" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                                 <connections>
@@ -37,7 +31,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E1O-ZQ-Re8">
-                                <rect key="frame" x="242" y="121" width="58" height="30"/>
+                                <rect key="frame" x="322" y="121" width="58" height="30"/>
                                 <state key="normal" title="Enter">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -51,7 +45,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="CK7-Bv-VMc"/>
                     <connections>
-                        <outlet property="enterButton" destination="MHI-9M-LFo" id="0ty-Z1-4bw"/>
+                        <outlet property="enterButton" destination="E1O-ZQ-Re8" id="Ay9-SV-S1J"/>
                         <outlet property="textField" destination="50a-J8-5OX" id="l6M-zD-xtk"/>
                     </connections>
                 </viewController>
@@ -68,11 +62,12 @@
                         <viewControllerLayoutGuide type="bottom" id="Jkb-wv-00m"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ima-ya-dCv">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="8ec-ym-MYu"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b6o-av-JFF" userLabel="First Responder" sceneMemberID="firstResponder"/>
