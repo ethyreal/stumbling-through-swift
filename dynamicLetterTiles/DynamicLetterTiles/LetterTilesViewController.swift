@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LetterTilesViewController: UIViewController, UIGestureRecognizerDelegate, UIDynamicAnimatorDelegate {
+class LetterTilesViewController: UIViewController, TileViewDelegate, UIAlertViewDelegate {
 
     var characters:NSString? = nil {
         didSet {
@@ -22,10 +22,7 @@ class LetterTilesViewController: UIViewController, UIGestureRecognizerDelegate, 
     var tileViews:NSMutableArray? = nil
     var targetOutlineViews:NSMutableArray? = nil
     
-    var animator:UIDynamicAnimator? = nil
-    
-    var currentBehavior:UISnapBehavior? = nil
-    var currentTile:UIImageView? = nil
+    var currentTile:TileView? = nil
     
     init(coder aDecoder: NSCoder!) {
         
@@ -39,10 +36,6 @@ class LetterTilesViewController: UIViewController, UIGestureRecognizerDelegate, 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        self.animator = UIDynamicAnimator(referenceView: self.view)
-        self.animator!.delegate = self
         
         setupTiles()
         setupTargets()
@@ -84,8 +77,7 @@ class LetterTilesViewController: UIViewController, UIGestureRecognizerDelegate, 
             
             self.charactersNoWhiteSpace!.enumerateSubstringsInRange( range, options: enumerationOptions ) { character, _, _, stop in
                 
-                let tileImage   = UIImage(named: character)
-                let tileView    = UIImageView(image: tileImage)
+                let tileView    = TileView(imageName: character, delegate: self, parentView: self.view)
                 
                 tileView.userInteractionEnabled = true
                 tileView.layer.zPosition = 20
@@ -96,10 +88,6 @@ class LetterTilesViewController: UIViewController, UIGestureRecognizerDelegate, 
                 tileFrame.origin.y = currentY
                 
                 tileView.frame = tileFrame
-
-                let pan = UIPanGestureRecognizer(target: self, action: "handlePan:")
-                
-                tileView.addGestureRecognizer(pan)
                 
                 self.view.addSubview(tileView)
                 
@@ -162,51 +150,81 @@ class LetterTilesViewController: UIViewController, UIGestureRecognizerDelegate, 
             }
         }
     }
+
+    // actions
     
-    func handlePan(pan: UIPanGestureRecognizer ) {
+    @IBAction func handleCheck(sender:UIBarButtonItem) {
         
-        let tileView = pan.view as UIImageView
-        self.currentTile = tileView
-        
-        if pan.state == UIGestureRecognizerState.Began {
+        if self.targetOutlineViews {
+            //var stringToCheck:NSMutableString = NSMutableString()
+            var stringToCheck:String = ""
             
-            if self.animator {
-                self.animator!.removeAllBehaviors()
-        
-            }
-            
-        } else if pan.state == UIGestureRecognizerState.Changed {
-            
-            var newCenter:CGPoint = tileView.center
-            
-            newCenter.x += pan.translationInView(self.view).x
-            newCenter.y += pan.translationInView(self.view).y
-            
-            tileView.center = newCenter
-            
-            pan.setTranslation(CGPointZero, inView: self.view)
-            
-        } else if pan.state == UIGestureRecognizerState.Ended {
-            
-            if self.animator {
-                self.animator!.removeAllBehaviors()
+            for obj:AnyObject in self.targetOutlineViews! {
+                var outline = obj as OutlineView
                 
-                
-                var intersection = tileViewInsectsOutlineView(tileView)
-                
-                if intersection.intersects {
-                    var snapToPoint:CGPoint = intersection.outlineView!.center
-                    self.currentBehavior = UISnapBehavior(item: tileView, snapToPoint: snapToPoint)
-                    
-                    self.animator!.addBehavior(self.currentBehavior!)
+                if outline.tileView {
+                    stringToCheck = stringToCheck + outline.tileView!.character
                 }
-                
-                
             }
+            
+            var alert:UIAlertView
+            var title:NSString = NSString(string: " ")
+            var message:NSString
+            var cancelButtonTitle:NSString = NSString(string: "Ok")
+            
+            if stringToCheck.bridgeToObjectiveC().isEqualToString(self.charactersNoWhiteSpace) {
+                message = NSString(string: "Correct!")
+            } else {
+                message = NSString(string: "Try again")
+            }
+            alert = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: cancelButtonTitle)
+
+            alert.show()
         }
     }
     
-    func tileViewInsectsOutlineView( tileView:UIView ) -> ( intersects:Bool, outlineView:OutlineView? ) {
+    @IBAction func handleReset(sender:UIBarButtonItem) {
+        if self.targetOutlineViews {
+            for obj:AnyObject in self.targetOutlineViews! {
+                let ov = obj as OutlineView
+                
+                ov.tileView = nil
+            }
+        }
+        
+        if self.tileViews {
+            
+            for obj:AnyObject in self.tileViews! {
+                let tv = obj as TileView
+                
+                tv.removeFromSuperview()
+            }
+            
+            self.tileViews!.removeAllObjects()
+            
+            setupTiles()
+        }
+    }
+    
+    // TileViewDelegate
+    
+    func tileViewWillBeginPanning( tileView:TileView ) {
+        self.currentTile = tileView
+        
+        if tileView.outlineView {
+            if tileView.outlineView!.tileView {
+                tileView.outlineView!.tileView = nil
+            }
+            tileView.outlineView = nil
+        }
+    }
+    
+    func tileViewWillSnapToOutlineView( tileView:TileView, outlineView:OutlineView ) {
+        tileView.outlineView = outlineView
+        outlineView.tileView = tileView
+    }
+    
+    func tileViewInsectsOutlineView( tileView:TileView ) -> ( intersects:Bool, outlineView:OutlineView? ) {
         
         var intersects:Bool = false
         var outlineView:OutlineView? = nil
@@ -225,13 +243,11 @@ class LetterTilesViewController: UIViewController, UIGestureRecognizerDelegate, 
         
         return (intersects, outlineView)
     }
-    
-    // UIDynamicAnimatorDelegate
-    
-    func dynamicAnimatorDidPause(animator: UIDynamicAnimator!) {
-        if self.currentBehavior {
-            animator.removeBehavior(self.currentBehavior!)
-        }
-    }
 
+    
+    // UIAlertView Delegate
+    
+    func alertView( alertView: UIAlertView!, clickedButtonAtIndex buttonIndex: Int) {
+            
+    }
 }

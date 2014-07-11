@@ -12,11 +12,20 @@ class OutlineView: UIView {
 
     let dashedBorderWidth:CGFloat = 2.0
     let dashedPhase:CGFloat = 0.0
-    let dashedLinesLength:CConstPointer<CGFloat> = [4.0, 2.0]
+    //let dashedLinesLength:ConstUnsafePointer<CGFloat> = [4.0, 2.0]
     let dashedCount:size_t = 2
+    var tileView:TileView? = nil
     
     init(frame: CGRect) {
         super.init(frame: frame)
+    }
+    
+    func constainsTileView() -> Bool {
+        if self.tileView {
+            return true
+        }
+        
+        return false
     }
 
     override func drawRect(rect: CGRect)
@@ -31,7 +40,7 @@ class OutlineView: UIView {
         
         CGContextSetLineWidth(context, dashedBorderWidth)
         CGContextSetStrokeColorWithColor(context, UIColor.lightGrayColor().CGColor)
-        CGContextSetLineDash(context, dashedPhase, dashedLinesLength, dashedCount)
+        CGContextSetLineDash(context, dashedPhase, [4.0, 2.0], dashedCount)
         
         let insetRect = CGRectInset(rect, 3, 3)
         
