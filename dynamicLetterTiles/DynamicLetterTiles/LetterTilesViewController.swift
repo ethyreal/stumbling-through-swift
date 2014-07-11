@@ -37,10 +37,13 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIAlertView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+
+    override func viewWillAppear(animated: Bool) {
         setupTiles()
         setupTargets()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -60,21 +63,13 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIAlertView
     
     func setupTiles() {
         
-        if self.charactersNoWhiteSpace {
-            
-            let startX:CGFloat = 10.0
-            let startY:CGFloat = CGRectGetMidY(self.view.bounds)
-            
-            let bufferX:CGFloat = 5.0
-            let bufferY:CGFloat = 5.0
-            
-            var currentX = startX
-            var currentY = startY
-            
+        if self.charactersNoWhiteSpace && self.tileViews {
+
             let enumerationOptions: NSStringEnumerationOptions = .ByComposedCharacterSequences
             
             let range: NSRange = NSMakeRange(0, self.charactersNoWhiteSpace!.length)
-            
+
+            // setup tileViews
             self.charactersNoWhiteSpace!.enumerateSubstringsInRange( range, options: enumerationOptions ) { character, _, _, stop in
                 
                 let tileView    = TileView(imageName: character, delegate: self, parentView: self.view)
@@ -82,6 +77,30 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIAlertView
                 tileView.userInteractionEnabled = true
                 tileView.layer.zPosition = 20
                 
+                self.tileViews!.addObject(tileView)
+                
+            }
+            
+            //randomize
+            let randmizedTiles = self.randomizedArray(self.tileViews!)
+            self.tileViews = NSMutableArray(array: randmizedTiles)
+            
+            let bufferX:CGFloat = 5.0
+            let bufferY:CGFloat = 5.0
+
+            let charCount:NSNumber = self.charactersNoWhiteSpace!.length
+            
+            let tv = self.tileViews!.lastObject as TileView
+            
+            let tileTotalWidth = (charCount.floatValue * CGRectGetWidth(tv.frame)) + (charCount.floatValue * bufferX ) - bufferX // doesn't count foriegn charactes!
+            let startX:CGFloat = CGRectGetMidX(self.view.bounds) - ( tileTotalWidth / 2 )
+            let startY:CGFloat = CGRectGetMidY(self.view.bounds)
+            
+            var currentX = startX
+            var currentY = startY
+            
+            for obj:AnyObject in self.tileViews! {
+                let tileView = obj as TileView
                 var tileFrame = tileView.frame
                 
                 tileFrame.origin.x = currentX
@@ -91,17 +110,12 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIAlertView
                 
                 self.view.addSubview(tileView)
                 
-                if self.tileViews {
-                    self.tileViews!.addObject(tileView)
-                }
-                
                 currentX += CGRectGetWidth(tileFrame) + bufferX
                 
                 if currentX + CGRectGetWidth(tileFrame) > CGRectGetWidth(self.view.bounds) {
                     currentX = startX
                     currentY = CGRectGetMaxY(tileFrame) + bufferY
                 }
-                
             }
             
             
@@ -114,20 +128,25 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIAlertView
         
         if self.tileViews {
             
-            let startX:CGFloat = 10.0
-            let startY:CGFloat = self.topLayoutGuide.length + 10
-            
             let bufferX:CGFloat = 5.0
             let bufferY:CGFloat = 5.0
+            
+            let charCount:NSNumber = self.charactersNoWhiteSpace!.length
+            
+            let tv = self.tileViews!.lastObject as TileView
+            
+            var outlineFrame = CGRectInset( tv.frame, -6, -6)
+            
+            let tileTotalWidth = (charCount.floatValue * CGRectGetWidth(outlineFrame)) + (charCount.floatValue * bufferX ) - bufferX // doesn't count foriegn charactes!
+            let startX:CGFloat = CGRectGetMidX(self.view.bounds) - ( tileTotalWidth / 2 )
+            
+            let startY:CGFloat = self.topLayoutGuide.length + ( CGRectGetHeight(self.view.bounds) / 4 )
             
             var currentX = startX
             var currentY = startY
             
             for obj:AnyObject in self.tileViews! {
                 
-                let iv = obj as UIImageView
-                
-                var outlineFrame = CGRectInset( iv.frame, -6, -6)
                 let outlineView = OutlineView( frame: outlineFrame )
                 
                 outlineView.layer.zPosition = 10
@@ -233,7 +252,8 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIAlertView
             for obj:AnyObject in self.targetOutlineViews! {
                 let ov = obj as OutlineView
                 
-                if CGRectIntersectsRect(tileView.frame, ov.frame) {
+                // todo add collision detectoin, but for now just dont allow overlap
+                if CGRectIntersectsRect(tileView.frame, ov.frame) && !ov.tileView {
                     intersects = true
                     outlineView = ov
                     break
@@ -249,5 +269,24 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIAlertView
     
     func alertView( alertView: UIAlertView!, clickedButtonAtIndex buttonIndex: Int) {
             
+    }
+    
+    // helprs - TODO make this an extention
+    
+    func randomizedArray( source:NSArray ) -> NSArray {
+        var shuffled = NSMutableArray(capacity: source.count)
+        
+        var copy = source.mutableCopy() as NSMutableArray
+        
+        while copy.count > 0 {
+            var index:Int = Int(rand()) % (copy.count)
+            
+            let objectToMove: AnyObject! = copy.objectAtIndex(index)
+            
+            shuffled.addObject(objectToMove)
+            copy.removeObjectAtIndex(index)
+        }
+        
+        return shuffled
     }
 }
