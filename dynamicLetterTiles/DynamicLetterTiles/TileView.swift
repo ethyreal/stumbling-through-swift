@@ -42,7 +42,7 @@ class TileView: UIImageView {
 
         self.characterLabel.text = self.character
         self.characterLabel.textAlignment = NSTextAlignment.Center
-        self.characterLabel.font = UIFont.systemFontOfSize(28.0)
+        self.characterLabel.font = UIFont.systemFontOfSize(30.0)
         
         self.addSubview(self.characterLabel)
         

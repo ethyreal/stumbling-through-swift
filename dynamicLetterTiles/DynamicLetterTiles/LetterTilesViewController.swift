@@ -27,6 +27,7 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
     var animator:UIDynamicAnimator? = nil
     var collision:UICollisionBehavior? = nil
     var currentSnapBehavior:UISnapBehavior? = nil
+    var tileProperties:UIDynamicItemBehavior? = nil
     
     init(coder aDecoder: NSCoder!) {
         
@@ -183,18 +184,19 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
         
         if self.tileViews {
             var colArray = NSMutableArray(capacity: self.tileViews!.count)
-            
-            for obj:AnyObject in self.tileViews! {
-                
-                let tileView = obj as TileView
-                
-                colArray.addObject(tileView)
-            }
-            
-            self.collision = UICollisionBehavior(items: colArray)
+
+            self.collision = UICollisionBehavior(items: self.tileViews)
             self.collision!.translatesReferenceBoundsIntoBoundary = true
+            //self.collision!.collisionMode = UICollisionBehaviorMode.Boundaries
+            
+            self.tileProperties = UIDynamicItemBehavior(items: self.tileViews)
+            self.tileProperties!.friction = 1
+            self.tileProperties!.resistance = 1
+            self.tileProperties!.angularResistance = 1
+            
             
             if self.animator {
+                self.animator!.addBehavior(self.tileProperties!)
                 self.animator!.addBehavior(self.collision!)
             }
         }
@@ -233,6 +235,11 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
     }
     
     @IBAction func handleReset(sender:UIBarButtonItem) {
+        
+        if self.animator {
+            self.animator!.removeAllBehaviors()
+        }
+        
         if self.targetOutlineViews {
             for obj:AnyObject in self.targetOutlineViews! {
                 let ov = obj as OutlineView
@@ -252,6 +259,7 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
             self.tileViews!.removeAllObjects()
             
             setupTiles()
+            setupCollisions()
         }
     }
     
@@ -263,6 +271,12 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
             self.currentSnapBehavior = UISnapBehavior(item: tileView, snapToPoint: point)
             self.currentSnapBehavior!.damping = 0.25
             self.animator!.addBehavior(self.currentSnapBehavior!)
+            
+            // because the outline view we maybe snaped to is behind all the views
+            // in order to grab it again we have to make sure it is back in the front
+            // or we could do some pass through logic but this is simpler for now
+            
+            self.view.bringSubviewToFront(tileView)
         }
     }
     
@@ -295,6 +309,7 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
     func tileViewWillSnapToOutlineView( tileView:TileView, outlineView:OutlineView ) {
         tileView.outlineView = outlineView
         outlineView.tileView = tileView
+        
     }
     
     func tileViewInsectsOutlineView( tileView:TileView ) -> ( intersects:Bool, outlineView:OutlineView? ) {
@@ -321,16 +336,6 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
     // UIDynamicAnimatorDelegate
     
     func dynamicAnimatorDidPause(animator: UIDynamicAnimator!) {
-//        if self.currentBehavior {
-//            animator.removeBehavior(self.currentBehavior!)
-//        }
-        // because the outline view we maybe snaped to is behind all the views
-        // in order to grab it again we have to make sure it is back in the front
-        // or we could do some pass through logic but this is simpler for now
-        //self.view.bringSubviewToFront(self)
-        if self.currentTile {
-            self.currentTile!.layer.zPosition = 20
-        }
     }
     
 
