@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LetterTilesViewController: UIViewController, TileViewDelegate, UIAlertViewDelegate {
+class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAnimatorDelegate, UIAlertViewDelegate {
 
     var characters:NSString? = nil {
         didSet {
@@ -24,6 +24,10 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIAlertView
     
     var currentTile:TileView? = nil
     
+    var animator:UIDynamicAnimator? = nil
+    var collision:UICollisionBehavior? = nil
+    var currentSnapBehavior:UISnapBehavior? = nil
+    
     init(coder aDecoder: NSCoder!) {
         
         
@@ -37,11 +41,14 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIAlertView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.animator = UIDynamicAnimator(referenceView: self.view)
+        
     }
 
     override func viewWillAppear(animated: Bool) {
         setupTiles()
         setupTargets()
+        setupCollisions()
     }
     
     override func didReceiveMemoryWarning() {
@@ -169,6 +176,29 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIAlertView
             }
         }
     }
+    
+    func setupCollisions() {
+        
+        self.collision = nil
+        
+        if self.tileViews {
+            var colArray = NSMutableArray(capacity: self.tileViews!.count)
+            
+            for obj:AnyObject in self.tileViews! {
+                
+                let tileView = obj as TileView
+                
+                colArray.addObject(tileView)
+            }
+            
+            self.collision = UICollisionBehavior(items: colArray)
+            self.collision!.translatesReferenceBoundsIntoBoundary = true
+            
+            if self.animator {
+                self.animator!.addBehavior(self.collision!)
+            }
+        }
+    }
 
     // actions
     
@@ -227,6 +257,19 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIAlertView
     
     // TileViewDelegate
     
+    func tileViewDragToPoint( tileView:TileView, point:CGPoint ) {
+        if self.animator {
+            self.tileViewStopDragging(tileView)
+            self.currentSnapBehavior = UISnapBehavior(item: tileView, snapToPoint: point)
+            self.currentSnapBehavior!.damping = 0.25
+            self.animator!.addBehavior(self.currentSnapBehavior!)
+        }
+    }
+    
+    func tileViewStopDragging(tileView:TileView) {
+        self.removeCurrentSnapBehavior()
+    }
+
     func tileViewWillBeginPanning( tileView:TileView ) {
         self.currentTile = tileView
         
@@ -238,6 +281,17 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIAlertView
         }
     }
     
+    func tileViewWillEndPanning( tileView:TileView ) {
+        self.removeCurrentSnapBehavior()
+    }
+    
+    func removeCurrentSnapBehavior() {
+        if self.currentSnapBehavior && self.animator {
+            self.animator!.removeBehavior(self.currentSnapBehavior!)
+            self.currentSnapBehavior = nil
+        }
+    }
+
     func tileViewWillSnapToOutlineView( tileView:TileView, outlineView:OutlineView ) {
         tileView.outlineView = outlineView
         outlineView.tileView = tileView
@@ -263,6 +317,22 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIAlertView
         
         return (intersects, outlineView)
     }
+
+    // UIDynamicAnimatorDelegate
+    
+    func dynamicAnimatorDidPause(animator: UIDynamicAnimator!) {
+//        if self.currentBehavior {
+//            animator.removeBehavior(self.currentBehavior!)
+//        }
+        // because the outline view we maybe snaped to is behind all the views
+        // in order to grab it again we have to make sure it is back in the front
+        // or we could do some pass through logic but this is simpler for now
+        //self.view.bringSubviewToFront(self)
+        if self.currentTile {
+            self.currentTile!.layer.zPosition = 20
+        }
+    }
+    
 
     
     // UIAlertView Delegate
