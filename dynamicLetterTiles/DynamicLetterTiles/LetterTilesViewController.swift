@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAnimatorDelegate, UIAlertViewDelegate {
+class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAnimatorDelegate, UICollisionBehaviorDelegate, UIAlertViewDelegate {
 
     var characters:NSString? = nil {
         didSet {
@@ -187,13 +187,14 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
 
             self.collision = UICollisionBehavior(items: self.tileViews)
             self.collision!.translatesReferenceBoundsIntoBoundary = true
+            self.collision!.collisionDelegate = self
             //self.collision!.collisionMode = UICollisionBehaviorMode.Boundaries
             
             self.tileProperties = UIDynamicItemBehavior(items: self.tileViews)
             self.tileProperties!.friction = 1
             self.tileProperties!.resistance = 1
             self.tileProperties!.angularResistance = 1
-            
+            self.tileProperties!.elasticity = 0.25
             
             if self.animator {
                 self.animator!.addBehavior(self.tileProperties!)
@@ -338,7 +339,29 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
     func dynamicAnimatorDidPause(animator: UIDynamicAnimator!) {
     }
     
+    // UICollisionBehaviorDelegate
+    
+    func collisionBehavior(behavior: UICollisionBehavior!,
+        beganContactForItem item1: UIDynamicItem!,
+        withItem item2: UIDynamicItem!,
+        atPoint p: CGPoint) {
+            
+            let tile1 = item1 as TileView
+            let tile2 = item2 as TileView
+            
+            println("\(tile1.character) tile began contact with \(tile2.character) tile")
+            
+    }
+    
+    func collisionBehavior(behavior: UICollisionBehavior!,
+        endedContactForItem item1: UIDynamicItem!,
+        withItem item2: UIDynamicItem!) {
 
+            let tile1 = item1 as TileView
+            let tile2 = item2 as TileView
+            
+            println("\(tile1.character) tile ended contact with \(tile2.character) tile")
+    }
     
     // UIAlertView Delegate
     
