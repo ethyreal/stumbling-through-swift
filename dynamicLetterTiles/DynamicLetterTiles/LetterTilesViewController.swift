@@ -96,11 +96,11 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
             let bufferX:CGFloat = 5.0
             let bufferY:CGFloat = 5.0
 
-            let charCount:NSNumber = self.charactersNoWhiteSpace!.length
-            
+            let charCount:CGFloat = CGFloat(self.charactersNoWhiteSpace!.length)
+
             let tv = self.tileViews!.lastObject as TileView
             
-            let tileTotalWidth = (charCount.floatValue * CGRectGetWidth(tv.frame)) + (charCount.floatValue * bufferX ) - bufferX // doesn't count foriegn charactes!
+            let tileTotalWidth:CGFloat = (charCount * CGRectGetWidth(tv.frame)) + (charCount * bufferX ) - bufferX // doesn't count foriegn charactes!
             let startX:CGFloat = CGRectGetMidX(self.view.bounds) - ( tileTotalWidth / 2 )
             let startY:CGFloat = CGRectGetMidY(self.view.bounds)
             
@@ -139,13 +139,13 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
             let bufferX:CGFloat = 5.0
             let bufferY:CGFloat = 5.0
             
-            let charCount:NSNumber = self.charactersNoWhiteSpace!.length
+            let charCount:CGFloat = CGFloat(self.charactersNoWhiteSpace!.length)
             
             let tv = self.tileViews!.lastObject as TileView
             
             var outlineFrame = CGRectInset( tv.frame, -6, -6)
             
-            let tileTotalWidth = (charCount.floatValue * CGRectGetWidth(outlineFrame)) + (charCount.floatValue * bufferX ) - bufferX // doesn't count foriegn charactes!
+            let tileTotalWidth = (charCount * CGRectGetWidth(outlineFrame)) + (charCount * bufferX ) - bufferX // doesn't count foriegn charactes!
             let startX:CGFloat = CGRectGetMidX(self.view.bounds) - ( tileTotalWidth / 2 )
             
             let startY:CGFloat = self.topLayoutGuide.length + ( CGRectGetHeight(self.view.bounds) / 4 )
