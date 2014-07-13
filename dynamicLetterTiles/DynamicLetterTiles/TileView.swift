@@ -20,6 +20,7 @@ protocol TileViewDelegate {
     func tileViewWillEndPanning( tileView:TileView )
     
     func tileViewWillSnapToOutlineView( tileView:TileView, outlineView:OutlineView )
+    func tileViewDidSnapToOutlineView( tileView:TileView, outlineView:OutlineView )
 }
 
 class TileView: UIImageView {
@@ -86,6 +87,9 @@ class TileView: UIImageView {
                 self.delegate.tileViewWillSnapToOutlineView(self, outlineView: intersection.outlineView!)
                 
                 self.delegate.tileViewDragToPoint(self, point: snapToPoint)
+                
+                self.delegate.tileViewDidSnapToOutlineView(self, outlineView: intersection.outlineView!)
+                
             } else {
                 self.delegate.tileViewStopDragging(self)
             }

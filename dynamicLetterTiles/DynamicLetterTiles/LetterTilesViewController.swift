@@ -153,9 +153,12 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
             var currentX = startX
             var currentY = startY
             
+            var index = 0
+            
             for obj:AnyObject in self.tileViews! {
                 
-                let outlineView = OutlineView( frame: outlineFrame )
+                let identifier = "outlineBoundry\(index)"
+                let outlineView = OutlineView( frame: outlineFrame, boundryIdentifier:identifier )
                 
                 outlineView.layer.zPosition = 10
                 
@@ -174,6 +177,8 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
                     currentX = startX
                     currentY = CGRectGetMaxY(outlineFrame) + bufferY
                 }
+                
+                index++
             }
         }
     }
@@ -195,6 +200,7 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
             self.tileProperties!.resistance = 1
             self.tileProperties!.angularResistance = 1
             self.tileProperties!.elasticity = 0.25
+            self.tileProperties!.allowsRotation = false
             
             if self.animator {
                 self.animator!.addBehavior(self.tileProperties!)
@@ -289,6 +295,10 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
         self.currentTile = tileView
         
         if tileView.outlineView {
+            
+            if self.collision {
+                self.collision!.removeBoundaryWithIdentifier(tileView.outlineView!.boundryIdentifier)
+            }
             if tileView.outlineView!.tileView {
                 tileView.outlineView!.tileView = nil
             }
@@ -312,6 +322,14 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
         outlineView.tileView = tileView
         
     }
+    
+    func tileViewDidSnapToOutlineView( tileView:TileView, outlineView:OutlineView ) {
+        if self.collision {
+            let path = UIBezierPath(rect: outlineView.frame)
+            self.collision!.addBoundaryWithIdentifier(outlineView.boundryIdentifier, forPath: path)
+        }
+    }
+
     
     func tileViewInsectsOutlineView( tileView:TileView ) -> ( intersects:Bool, outlineView:OutlineView? ) {
         

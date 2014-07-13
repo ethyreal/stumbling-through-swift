@@ -15,8 +15,10 @@ class OutlineView: UIView {
     //let dashedLinesLength:ConstUnsafePointer<CGFloat> = [4.0, 2.0]
     let dashedCount:size_t = 2
     var tileView:TileView? = nil
+    let boundryIdentifier:NSString
     
-    init(frame: CGRect) {
+    init(frame: CGRect, boundryIdentifier:NSString) {
+        self.boundryIdentifier = boundryIdentifier
         super.init(frame: frame)
     }
     
