@@ -14,7 +14,7 @@ protocol TileViewDelegate {
     
     func tileViewStopDragging(tileView:TileView)
     
-    func tileViewInsectsOutlineView( tileView:TileView ) -> ( intersects:Bool, outlineView:OutlineView? )
+    func tileViewFrameInsectsOutlineView( frame:CGRect ) -> ( intersects:Bool, outlineView:OutlineView? )
 
     func tileViewWillBeginPanning( tileView:TileView )
     func tileViewWillEndPanning( tileView:TileView )
@@ -67,10 +67,10 @@ class TileView: UIImageView {
         
         self.delegate.tileViewWillBeginPanning(self)
         
+        var snapToPoint:CGPoint = pan.locationInView(self.superview)
+        
         if pan.state == UIGestureRecognizerState.Began ||
            pan.state == UIGestureRecognizerState.Changed {
-            
-            var snapToPoint:CGPoint = pan.locationInView(self.superview)
             
             self.delegate.tileViewDragToPoint(self, point: snapToPoint)
             
@@ -79,10 +79,12 @@ class TileView: UIImageView {
             
             self.delegate.tileViewWillEndPanning(self)
                     
-            var intersection = self.delegate.tileViewInsectsOutlineView(self)
+            var newTileFrame = self.rectForCenterPoint(snapToPoint)
+                    
+            var intersection = self.delegate.tileViewFrameInsectsOutlineView(newTileFrame)
             
             if intersection.intersects {
-                var snapToPoint:CGPoint = intersection.outlineView!.center
+                snapToPoint = intersection.outlineView!.center
                 
                 self.delegate.tileViewWillSnapToOutlineView(self, outlineView: intersection.outlineView!)
                 
@@ -98,6 +100,14 @@ class TileView: UIImageView {
         }
     }
     
-    
+    func rectForCenterPoint(point:CGPoint) -> CGRect {
+        var rect = CGRectZero
+        rect.size = self.frame.size
+        
+        rect.origin.x = point.x - CGRectGetMidX(rect)
+        rect.origin.y = point.y - CGRectGetMidY(rect)
+        
+        return rect
+    }
 
 }

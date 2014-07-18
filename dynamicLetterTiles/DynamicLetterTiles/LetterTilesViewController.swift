@@ -202,10 +202,8 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
             self.tileProperties!.elasticity = 0.25
             self.tileProperties!.allowsRotation = false
             
-            if self.animator {
-                self.animator!.addBehavior(self.tileProperties!)
-                self.animator!.addBehavior(self.collision!)
-            }
+            self.animator?.addBehavior(self.tileProperties!)
+            self.animator?.addBehavior(self.collision!)
         }
     }
 
@@ -273,18 +271,17 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
     // TileViewDelegate
     
     func tileViewDragToPoint( tileView:TileView, point:CGPoint ) {
-        if self.animator {
-            self.tileViewStopDragging(tileView)
-            self.currentSnapBehavior = UISnapBehavior(item: tileView, snapToPoint: point)
-            self.currentSnapBehavior!.damping = 0.25
-            self.animator!.addBehavior(self.currentSnapBehavior!)
+
+        self.tileViewStopDragging(tileView)
+        self.currentSnapBehavior = UISnapBehavior(item: tileView, snapToPoint: point)
+        self.currentSnapBehavior!.damping = 0.25
+        self.animator?.addBehavior(self.currentSnapBehavior!)
             
-            // because the outline view we maybe snaped to is behind all the views
-            // in order to grab it again we have to make sure it is back in the front
-            // or we could do some pass through logic but this is simpler for now
-            
-            self.view.bringSubviewToFront(tileView)
-        }
+        // because the outline view we maybe snaped to is behind all the views
+        // in order to grab it again we have to make sure it is back in the front
+        // or we could do some pass through logic but this is simpler for now
+        
+        self.view.bringSubviewToFront(tileView)
     }
     
     func tileViewStopDragging(tileView:TileView) {
@@ -296,12 +293,9 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
         
         if tileView.outlineView {
             
-            if self.collision {
-                self.collision!.removeBoundaryWithIdentifier(tileView.outlineView!.boundryIdentifier)
-            }
-            if tileView.outlineView!.tileView {
-                tileView.outlineView!.tileView = nil
-            }
+            self.collision?.removeBoundaryWithIdentifier(tileView.outlineView!.boundryIdentifier)
+
+            tileView.outlineView!.tileView = nil
             tileView.outlineView = nil
         }
     }
@@ -311,8 +305,9 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
     }
     
     func removeCurrentSnapBehavior() {
-        if self.currentSnapBehavior && self.animator {
-            self.animator!.removeBehavior(self.currentSnapBehavior!)
+        
+        if let behavior = self.currentSnapBehavior {
+            self.animator?.removeBehavior(behavior)
             self.currentSnapBehavior = nil
         }
     }
@@ -324,14 +319,13 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
     }
     
     func tileViewDidSnapToOutlineView( tileView:TileView, outlineView:OutlineView ) {
-        if self.collision {
-            let path = UIBezierPath(rect: outlineView.frame)
-            self.collision!.addBoundaryWithIdentifier(outlineView.boundryIdentifier, forPath: path)
-        }
+
+        let path = UIBezierPath(rect: outlineView.frame)
+        self.collision?.addBoundaryWithIdentifier(outlineView.boundryIdentifier, forPath: path)
     }
 
     
-    func tileViewInsectsOutlineView( tileView:TileView ) -> ( intersects:Bool, outlineView:OutlineView? ) {
+    func tileViewFrameInsectsOutlineView( frame:CGRect ) -> ( intersects:Bool, outlineView:OutlineView? ) {
         
         var intersects:Bool = false
         var outlineView:OutlineView? = nil
@@ -341,7 +335,7 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
                 let ov = obj as OutlineView
                 
                 // todo add collision detectoin, but for now just dont allow overlap
-                if CGRectIntersectsRect(tileView.frame, ov.frame) && !ov.tileView {
+                if CGRectIntersectsRect(frame, ov.frame) && !ov.tileView {
                     intersects = true
                     outlineView = ov
                     break
