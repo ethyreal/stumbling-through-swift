@@ -25,10 +25,15 @@ protocol TileViewDelegate {
 
 class TileView: UIImageView {
 
-    var delegate:TileViewDelegate
+    var delegate:TileViewDelegate?
     var outlineView:OutlineView? = nil
     var character:NSString
-    var characterLabel:UILabel
+    var characterLabel:UILabel?
+    
+    required init(coder aDecoder: NSCoder!) {
+        self.character = ""
+        super.init(coder: aDecoder);
+    }
     
     init(imageName: NSString, delegate:TileViewDelegate, parentView:UIView) {
         self.delegate = delegate
@@ -41,11 +46,13 @@ class TileView: UIImageView {
         
         super.init(image: image)
 
-        self.characterLabel.text = self.character
-        self.characterLabel.textAlignment = NSTextAlignment.Center
-        self.characterLabel.font = UIFont.systemFontOfSize(30.0)
-        
-        self.addSubview(self.characterLabel)
+        if let chLabel = self.characterLabel {
+            chLabel.text = self.character
+            chLabel.textAlignment = NSTextAlignment.Center
+            chLabel.font = UIFont.systemFontOfSize(30.0)
+
+            self.addSubview(chLabel)
+        }
         
         let pan = UIPanGestureRecognizer(target: self, action: "handlePan:")
         
@@ -54,7 +61,7 @@ class TileView: UIImageView {
     }
 
     func isInOutlineView() -> Bool {
-        if self.outlineView {
+        if (self.outlineView != nil) {
             return true
         }
         
@@ -65,35 +72,40 @@ class TileView: UIImageView {
     
     func handlePan(pan: UIPanGestureRecognizer ) {
         
-        self.delegate.tileViewWillBeginPanning(self)
+        self.delegate?.tileViewWillBeginPanning(self)
         
         var snapToPoint:CGPoint = pan.locationInView(self.superview)
         
         if pan.state == UIGestureRecognizerState.Began ||
            pan.state == UIGestureRecognizerState.Changed {
             
-            self.delegate.tileViewDragToPoint(self, point: snapToPoint)
+            self.delegate?.tileViewDragToPoint(self, point: snapToPoint)
             
         } else if pan.state == UIGestureRecognizerState.Ended ||
                   pan.state == UIGestureRecognizerState.Cancelled {
             
-            self.delegate.tileViewWillEndPanning(self)
+            self.delegate?.tileViewWillEndPanning(self)
                     
             var newTileFrame = self.rectForCenterPoint(snapToPoint)
                     
-            var intersection = self.delegate.tileViewFrameInsectsOutlineView(newTileFrame)
+            var hasIntersetion = self.delegate?.tileViewFrameInsectsOutlineView(newTileFrame)
             
-            if intersection.intersects {
-                snapToPoint = intersection.outlineView!.center
+            if let intersection = hasIntersetion {
                 
-                self.delegate.tileViewWillSnapToOutlineView(self, outlineView: intersection.outlineView!)
+                if let ov = intersection.outlineView {
+                    snapToPoint = ov.center
+                    
+                    self.delegate?.tileViewWillSnapToOutlineView(self, outlineView: ov)
+                    
+                    self.delegate?.tileViewDragToPoint(self, point: snapToPoint)
+                    
+                    self.delegate?.tileViewDidSnapToOutlineView(self, outlineView: ov)
+
+                }
                 
-                self.delegate.tileViewDragToPoint(self, point: snapToPoint)
-                
-                self.delegate.tileViewDidSnapToOutlineView(self, outlineView: intersection.outlineView!)
                 
             } else {
-                self.delegate.tileViewStopDragging(self)
+                self.delegate?.tileViewStopDragging(self)
             }
                 
                 

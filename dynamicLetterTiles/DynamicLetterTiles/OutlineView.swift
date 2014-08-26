@@ -17,13 +17,18 @@ class OutlineView: UIView {
     var tileView:TileView? = nil
     let boundryIdentifier:NSString
     
+    required init(coder aDecoder: NSCoder!) {
+        self.boundryIdentifier = ""
+        super.init(coder: aDecoder);
+    }
+    
     init(frame: CGRect, boundryIdentifier:NSString) {
         self.boundryIdentifier = boundryIdentifier
         super.init(frame: frame)
     }
     
     func constainsTileView() -> Bool {
-        if self.tileView {
+        if self.tileView != nil {
             return true
         }
         

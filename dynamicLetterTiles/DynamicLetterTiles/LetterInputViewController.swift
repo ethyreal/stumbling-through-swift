@@ -10,14 +10,14 @@ import UIKit
 
 class LetterInputViewController: UIViewController, UITextFieldDelegate {
 
-    @IBOutlet var textField:UITextField
-    @IBOutlet var enterButton:UIButton
+    @IBOutlet var textField:UITextField?
+    @IBOutlet var enterButton:UIButton?
     
-    init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder);
     }
     
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
@@ -26,7 +26,7 @@ class LetterInputViewController: UIViewController, UITextFieldDelegate {
 
         self.title = "Letter Tile Input"
 
-        self.textField.becomeFirstResponder()
+        self.textField?.becomeFirstResponder()
 
         self.updateTextFieldState(self.textField)
     }
@@ -60,11 +60,13 @@ class LetterInputViewController: UIViewController, UITextFieldDelegate {
             return true
     }
     
-    func updateTextFieldState( textField: UITextField ) {
-        if textField.text.isEmpty {
-            self.enterButton.enabled = false
-        } else {
-            self.enterButton.enabled = true
+    func updateTextFieldState( textField: UITextField? ) {
+        if let txtField = textField {
+            if txtField.text.isEmpty {
+                self.enterButton?.enabled = false
+            } else {
+                self.enterButton?.enabled = true
+            }
         }
     }
     
@@ -73,13 +75,13 @@ class LetterInputViewController: UIViewController, UITextFieldDelegate {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
         
-        if segue {
+        if segue != nil {
 
-            self.textField.resignFirstResponder()
+            self.textField?.resignFirstResponder()
             
             let vc:LetterTilesViewController = segue!.destinationViewController as LetterTilesViewController
             
-            vc.characters = textField.text
+            vc.characters = textField?.text
         }
         
     }

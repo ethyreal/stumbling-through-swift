@@ -12,7 +12,7 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
 
     var characters:NSString? = nil {
         didSet {
-            if self.characters {
+            if self.characters != nil {
                 self.loadDataString()
             }
         }
@@ -29,13 +29,13 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
     var currentSnapBehavior:UISnapBehavior? = nil
     var tileProperties:UIDynamicItemBehavior? = nil
     
-    init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder!) {
         
         
         super.init(coder: aDecoder)
     }
     
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
@@ -57,12 +57,12 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
     }
 
     func loadDataString() {
-        if self.characters {
+        if (self.characters != nil) {
             
             let upperCaseCharacters:NSString = self.characters!.uppercaseString
             self.charactersNoWhiteSpace = upperCaseCharacters.stringByTrimmingCharactersInSet( NSCharacterSet.whitespaceAndNewlineCharacterSet() )
             
-            if self.charactersNoWhiteSpace {
+            if self.charactersNoWhiteSpace != nil {
                 self.tileViews = NSMutableArray(capacity: self.charactersNoWhiteSpace!.length)
                 self.targetOutlineViews = NSMutableArray(capacity: self.charactersNoWhiteSpace!.length)
             }
@@ -71,7 +71,7 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
     
     func setupTiles() {
         
-        if self.charactersNoWhiteSpace && self.tileViews {
+        if self.charactersNoWhiteSpace != nil && self.tileViews != nil{
 
             let enumerationOptions: NSStringEnumerationOptions = .ByComposedCharacterSequences
             
@@ -134,7 +134,7 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
     
     func setupTargets() {
         
-        if self.tileViews {
+        if self.tileViews != nil {
             
             let bufferX:CGFloat = 5.0
             let bufferY:CGFloat = 5.0
@@ -187,7 +187,7 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
         
         self.collision = nil
         
-        if self.tileViews {
+        if self.tileViews != nil {
             var colArray = NSMutableArray(capacity: self.tileViews!.count)
 
             self.collision = UICollisionBehavior(items: self.tileViews)
@@ -200,7 +200,7 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
             self.tileProperties!.resistance = 1
             self.tileProperties!.angularResistance = 1
             self.tileProperties!.elasticity = 0.25
-            self.tileProperties!.allowsRotation = false
+            self.tileProperties!.allowsRotation = true
             
             self.animator?.addBehavior(self.tileProperties!)
             self.animator?.addBehavior(self.collision!)
@@ -211,14 +211,14 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
     
     @IBAction func handleCheck(sender:UIBarButtonItem) {
         
-        if self.targetOutlineViews {
+        if self.targetOutlineViews != nil {
             //var stringToCheck:NSMutableString = NSMutableString()
             var stringToCheck:String = ""
             
             for obj:AnyObject in self.targetOutlineViews! {
                 var outline = obj as OutlineView
                 
-                if outline.tileView {
+                if outline.tileView != nil {
                     stringToCheck = stringToCheck + outline.tileView!.character
                 }
             }
@@ -228,7 +228,7 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
             var message:NSString
             var cancelButtonTitle:NSString = NSString(string: "Ok")
             
-            if stringToCheck.bridgeToObjectiveC().isEqualToString(self.charactersNoWhiteSpace) {
+            if (stringToCheck as NSString).isEqualToString(self.charactersNoWhiteSpace) {
                 message = NSString(string: "Correct!")
             } else {
                 message = NSString(string: "Try again")
@@ -241,11 +241,9 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
     
     @IBAction func handleReset(sender:UIBarButtonItem) {
         
-        if self.animator {
-            self.animator!.removeAllBehaviors()
-        }
+        self.animator?.removeAllBehaviors()
         
-        if self.targetOutlineViews {
+        if self.targetOutlineViews != nil {
             for obj:AnyObject in self.targetOutlineViews! {
                 let ov = obj as OutlineView
                 
@@ -253,7 +251,7 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
             }
         }
         
-        if self.tileViews {
+        if self.tileViews != nil {
             
             for obj:AnyObject in self.tileViews! {
                 let tv = obj as TileView
@@ -291,7 +289,7 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
     func tileViewWillBeginPanning( tileView:TileView ) {
         self.currentTile = tileView
         
-        if tileView.outlineView {
+        if tileView.outlineView != nil {
             
             self.collision?.removeBoundaryWithIdentifier(tileView.outlineView!.boundryIdentifier)
 
@@ -330,12 +328,12 @@ class LetterTilesViewController: UIViewController, TileViewDelegate, UIDynamicAn
         var intersects:Bool = false
         var outlineView:OutlineView? = nil
         
-        if self.targetOutlineViews {
+        if self.targetOutlineViews != nil {
             for obj:AnyObject in self.targetOutlineViews! {
                 let ov = obj as OutlineView
                 
                 // todo add collision detectoin, but for now just dont allow overlap
-                if CGRectIntersectsRect(frame, ov.frame) && !ov.tileView {
+                if CGRectIntersectsRect(frame, ov.frame) && ov.tileView == nil {
                     intersects = true
                     outlineView = ov
                     break
