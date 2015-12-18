@@ -15,6 +15,7 @@
 		376CBA121C230EC700EA389F /* DataMateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376CBA111C230EC700EA389F /* DataMateTests.swift */; };
 		376CBA1D1C230F3E00EA389F /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376CBA1C1C230F3E00EA389F /* Node.swift */; };
 		376CBA1F1C231C8F00EA389F /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376CBA1E1C231C8F00EA389F /* Stack.swift */; };
+		37F1166D1C24646300ADA4DB /* ARStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F1166C1C24646300ADA4DB /* ARStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		376CBA131C230EC700EA389F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		376CBA1C1C230F3E00EA389F /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		376CBA1E1C231C8F00EA389F /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		37F1166C1C24646300ADA4DB /* ARStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				376CBA081C230EC700EA389F /* Info.plist */,
 				376CBA1C1C230F3E00EA389F /* Node.swift */,
 				376CBA1E1C231C8F00EA389F /* Stack.swift */,
+				37F1166C1C24646300ADA4DB /* ARStack.swift */,
 			);
 			path = DataMate;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 			files = (
 				376CBA1F1C231C8F00EA389F /* Stack.swift in Sources */,
 				376CBA1D1C230F3E00EA389F /* Node.swift in Sources */,
+				37F1166D1C24646300ADA4DB /* ARStack.swift in Sources */,
 				376CB9FF1C230EC700EA389F /* ViewController.swift in Sources */,
 				376CB9FD1C230EC700EA389F /* AppDelegate.swift in Sources */,
 			);
@@ -396,6 +400,7 @@
 				376CBA181C230EC700EA389F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		376CBA191C230EC700EA389F /* Build configuration list for PBXNativeTarget "DataMateTests" */ = {
 			isa = XCConfigurationList;
@@ -404,6 +409,7 @@
 				376CBA1B1C230EC700EA389F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
