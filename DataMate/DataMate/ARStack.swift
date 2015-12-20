@@ -43,4 +43,8 @@ class ARStack<Element> {
         return nil
     }
     
+    func peek() -> Element? {
+        return data.last
+    }
+    
 }

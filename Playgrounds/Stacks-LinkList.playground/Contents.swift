@@ -1,19 +1,23 @@
-//
-//  Stack.swift
-//  DataMate
-//
-//  Created by George Webster on 12/17/15.
-//  Copyright © 2015 George Webster. All rights reserved.
-//
+//: Playground - noun: a place where people can play
 
-import Foundation
+import UIKit
 
+class Node<Element> {
+    var item: Element
+    
+    var next:Node?
+    
+    init(item:Element) {
+        
+        self.item = item
+    }
+}
 
 class Stack<Element> {
     
     var isEmpty:Bool {
         get {
-            return (first != nil)
+            return (first == nil)
         }
     }
     
@@ -48,7 +52,7 @@ class Stack<Element> {
     }
     
     func peek() -> Element? {
-        
+
         guard let item = first?.item else {
             return nil
         }
@@ -56,3 +60,37 @@ class Stack<Element> {
         return item
     }
 }
+
+
+var pigNames = Stack<String>()
+
+pigNames.numberOfItems
+pigNames.isEmpty
+
+pigNames.push("Peppa")
+
+pigNames.isEmpty
+pigNames.numberOfItems
+
+pigNames.push("George")
+
+pigNames.numberOfItems
+
+pigNames.push("Daddy Pig")
+
+pigNames.numberOfItems
+
+var name = pigNames.peek()
+
+name = pigNames.pop()
+
+pigNames.numberOfItems
+
+name = pigNames.pop()
+
+pigNames.numberOfItems
+
+name = pigNames.pop()
+
+pigNames.isEmpty
+pigNames.numberOfItems
