@@ -41,3 +41,46 @@ another.enumerateSubstringsInRange(range, options: options) { (substring, substr
     }
 }
 print(reversedNS)
+
+
+
+// How would you find the first non repeating character in a string?
+
+var inputString = "to be or not to be, that is the question we must all face"
+
+func firstNonRepeatingCharacter(inputString:String) -> Character? {
+	var characterMap = [Character:Int]()
+	
+	for var character in inputString.characters {
+		
+		if let count = characterMap[character] {
+			characterMap[character] = count + 1
+		} else {
+			characterMap[character] = 1
+		}
+	}
+	
+	print(characterMap)
+	
+	var firstNonRepeat:Character?
+	
+	for var character in inputString.characters {
+		
+		guard let count = characterMap[character] else {
+			continue
+		}
+		
+		if count == 1 {
+			firstNonRepeat = character
+			break
+		}
+	}
+	
+	return firstNonRepeat
+}
+
+let first = firstNonRepeatingCharacter(inputString)
+
+
+
+
